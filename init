@@ -1,0 +1,63 @@
+
+// =============================================
+<!-- Подключить скрипт в footter -->
+
+<script src="https://api-maps.yandex.ru/2.1/?load=package.standard&amp;lang=ru_RU"></script>
+<script src="/js/map.js"></script>
+// =============================================
+
+
+
+// =============================================
+<!-- Подключить скрипт в html -->
+
+ <div id="map" class="map">
+        <div class="map__card-wrapper">
+            <div class="map__card border-block">
+                <p class="map__title">Ждем вас!</p>
+                <p class="map__desc">141400</p>
+                <a href="" class="map__link blue">Скачать схему проезда</a>
+                <p class="map__note">Офис работает
+                пн-пт с 9:00 до 18:00</p>
+              </div>
+              <div class="map__card border-block">
+                  <img src="/source/contact/map-img.png" alt="Картинка центра" class="map__card-img border-block">
+              </div>
+        </div>
+    </div>
+// =============================================
+
+
+
+// =============================================
+<!-- Подключить скрипт в js -->
+
+ymaps.ready(init);
+function init() {
+    console.log('hg');
+    
+    let center = [55.907021, 37.435466];
+    let map = new ymaps.Map('map', {
+        center: center,
+        zoom: 18
+    });
+
+    let placemark = new ymaps.Placemark([55.907021, 37.435466], {}, {
+        iconLayout: 'default#image',
+        iconImageHref: '/source/contact/map-icon.png',
+        iconImageSize: [80, 80],
+        iconImageOffset: [-40, -50]
+    });
+    // map.controls.add('mapTools');
+    map.controls.remove('geolocationControl'); // удаляем геолокацию
+    map.controls.remove('searchControl'); // удаляем поиск
+    map.controls.remove('trafficControl'); // удаляем контроль трафика
+    // map.controls.remove('typeSelector'); // удаляем тип
+    map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+
+    // map.controls.remove('zoomControl'); // удаляем контрол зуммирования
+    map.controls.remove('rulerControl'); // удаляем контрол правил
+    map.geoObjects.add(placemark);
+}
+// =============================================
+
